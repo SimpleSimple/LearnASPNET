@@ -1,0 +1,15 @@
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\SpringNET.Test.dll
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\SpringNET.Test.pdb
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\Common.Logging.dll
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\NHibernate-AspNetMvc.Service.dll
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\nunit.framework.dll
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\Spring.Core.dll
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\NHibernate-AspNetMvc.Dao.dll
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\Spring.Data.dll
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\NHibernate-AspNetMvc.Service.pdb
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\nunit.framework.xml
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\NHibernate-AspNetMvc.Dao.pdb
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\obj\Debug\SpringNET.Test.csprojResolveAssemblyReference.cache
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\obj\Debug\SpringNET.Test.dll
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\obj\Debug\SpringNET.Test.pdb
+E:\MyWork\VSProjects\EFCodeFirstSamples\02_Demos\SpringNET.Test\bin\Debug\SpringNET.Test.dll.config

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx">
+
+  <!--<db:provider id="DbProvider"
+                provider="SqlServer-1.1"
+                connectionString="Server=(local);Database=SpringLesson16;Uid=sa;Pwd=;Trusted_Connection=False"/>-->
+  <db:provider id="DbProvider"
+                provider="SqlServer-1.1"
+                connectionString="Server=(localdb)\v11.0;Database=SpringLesson16;Uid=sa;Pwd=;Trusted_Connection=False"/>
+
+  <object id="userDao" type="NHibernate-AspNetMvc.Dao.UserDao, NHibernate-AspNetMvc.Dao">
+    <property name="AdoTemplate" ref="adoTemplate"/>
+  </object>
+
+  <object id="accountDao" type="NHibernate-AspNetMvc.Dao.AccountDao, NHibernate-AspNetMvc.Dao">
+    <property name="AdoTemplate" ref="adoTemplate"/>
+  </object>
+
+  <object id="userService" type="NHibernate-AspNetMvc.Service.UserService, NHibernate-AspNetMvc.Service">
+    <property name="UserDao" ref="userDao"/>
+    <property name="AccountDao" ref="accountDao"/>
+  </object>
+
+  <object id="adoTemplate" type="Spring.Data.Core.AdoTemplate, Spring.Data">
+    <property name="DbProvider" ref="DbProvider"/>
+    <property name="DataReaderWrapperType" value="Spring.Data.Support.NullMappingDataReader, Spring.Data"/>
+  </object>
+
+  <!--事务管理器-->
+  <object id="transactionManager"
+         type="Spring.Data.Core.AdoPlatformTransactionManager, Spring.Data">
+    <property name="DbProvider" ref="DbProvider"/>
+  </object>
+
+
+  <!--事务切面-->
+  <tx:attribute-driven/>
+
+</objects>
