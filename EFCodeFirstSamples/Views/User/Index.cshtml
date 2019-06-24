@@ -1,0 +1,233 @@
+﻿@using EFCodeFirst.Repository.Model;
+@{
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+
+<div class="row">
+    <table id="grid_table" class="datagrid">
+        @foreach (User user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.Name</td>
+                <td>@user.Status</td>
+                <td>@user.CreatedDate</td>
+                <td>@user.ModifiedDate</td>
+            </tr>
+        }
+    </table>
+    <div id="jqGridPager"></div>
+</div>
+
+@section ScriptFooter{
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var grid_selector = "#grid_table";
+            var pager_selector = "#jqGridPager";
+            var lastSel;
+            //var oTable1 = $('#sample-table-2').dataTable({
+            //    "aoColumns": [
+			//      { "bSortable": false },
+			//      null, null, null, null, null,
+			//	  { "bSortable": false }
+            //    ]
+            //});
+            $(grid_selector).jqGrid({
+                //url: "/Menu/JSONData",
+                url: "/User/List",
+                datatype: "json",
+                mtype: "post",
+                colNames: ['用户编号', '用户名', '密码', '状态', '创建时间', '修改时间'],
+                colModel: [
+                    { name: 'UserId', index: 'name asc, MenuId', fixed: true, editable: true, editrules: { required: true } },
+				    { name: 'Name', index: 'MenuName', fixed: true, editable: true },
+				    { name: 'Password', index: 'Url', fixed: true, editable: true },
+				    //{
+				    //    name: 'ParentId', index: 'ParentId', width: 80, align: "right", editable: true
+				    //},
+				    {
+				        name: 'Status', index: 'Status', width: 80, align: "right", editable: true, edittype: "select",
+				        formatter: formatStatusText,
+				        editoptions: {
+				            value:"1:开启;0:禁用"
+				        }
+				    },
+				    {
+				        name: 'CreatedDate', index: '', fixed: true, align: ""
+				    },
+                    {
+                        name: 'ModifiedDate', index: '', fixed: true, align: ""
+                    },
+                ],
+                viewrecords: true,
+                rowNum: 20,
+                rowList: [10, 20, 30],
+                pager: pager_selector,
+                sortorder: "desc",
+                editurl: '@Url.Action("Save","User")',
+                onSelectRow: function(id){
+                    if(id && id!==lastSel){
+                        jQuery('#grid_id').restoreRow(lastSel);
+                        lastSel=id;
+                    }
+                },
+                loadComplete: function (xhr) {
+                    //xhr = JSON.parse(xhr);
+                    //console.log("type:" + typeof (xhr) + "\r\n" +
+                    //    "string:" + JSON.stringify(xhr)
+                    //    );
+                },
+                loadError: function (xhr, status, error) {
+                    alert("xhr:" + xhr + "\r\n" +
+                        "status:" + status + "\r\n" +
+                        "error:" + error);
+                },
+                autowidth: true,
+                shrinkToFit: false,
+                height:'100%',
+                caption: "用户列表"
+            });
+
+            jQuery(grid_selector).jqGrid('navGrid', pager_selector,
+                {
+                    edit: true,
+                    editicon: 'icon-pencil blue',
+                    add: true,
+                    addicon: 'icon-plus-sign purple',
+                    del: true,
+                    delicon: 'icon-trash red',
+                    search: true,
+                    searchicon: 'icon-search orange',
+                    refresh: true,
+                    refreshicon: 'icon-refresh green',
+                    view: true,
+                    viewicon: 'icon-zoom-in grey',
+                },
+                {
+                    //edit record form
+                    closeAfterEdit: true,
+                    recreateForm: true,
+                    beforeShowForm: function (e) {
+                        console.log(e[0]);
+                        var form = $(e[0]);
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                        style_edit_form(form);
+                    }
+                },
+				{
+				    //new record form
+				    closeAfterAdd: true,
+				    recreateForm: true,
+				    //viewPagerButtons: false,
+				    beforeShowForm: function (e) {
+				        var form = $(e[0]);
+				        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+				        style_edit_form(form);
+				    }
+				},
+                {
+                    //delete record form
+                    recreateForm: true,
+                    beforeShowForm: function (e) {
+                        var form = $(e[0]);
+                        if (form.data('styled')) return false;
+
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                        style_delete_form(form);
+
+                        form.data('styled', true);
+                    },
+                    onClick: function (e) {
+                        alert(1);
+                    }
+                },
+				{
+					//search form
+					recreateForm: true,
+					afterShowSearch: function (e) {
+					    var form = $(e[0]);
+					    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+					    style_search_form(form);
+					},
+					afterRedraw: function () {
+					    style_search_filters($(this));
+					}
+					,
+					multipleSearch: true,
+					/**
+					multipleGroup:true,
+					showQuery: true
+					*/
+				},
+				{
+					//view record form
+					recreateForm: true,
+					beforeShowForm: function (e) {
+					    var form = $(e[0]);
+					    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+					}
+				}
+            );
+
+            function style_edit_form(form) {
+                //enable datepicker on "sdate" field and switches for "stock" field
+                form.find('input[name=sdate]').datepicker({ format: 'yyyy-mm-dd', autoclose: true })
+                    .end().find('input[name=stock]')
+                          .addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
+
+                //update buttons classes
+                var buttons = form.next().find('.EditButton .fm-button');
+                buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
+                buttons.eq(0).addClass('btn-primary').prepend('<i class="icon-ok"></i>');
+                buttons.eq(1).prepend('<i class="icon-remove"></i>')
+
+                buttons = form.next().find('.navButton a');
+                buttons.find('.ui-icon').remove();
+                buttons.eq(0).append('<i class="icon-chevron-left"></i>');
+                buttons.eq(1).append('<i class="icon-chevron-right"></i>');
+            }
+
+            function style_delete_form(form) {
+                var buttons = form.next().find('.EditButton .fm-button');
+                buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
+                buttons.eq(0).addClass('btn-danger').prepend('<i class="icon-trash"></i>');
+                buttons.eq(1).prepend('<i class="icon-remove"></i>')
+            }
+
+            function formatStatusText(cellvalue, options, rowObject) {
+                if (cellvalue == 1) return "显示";
+                else return "隐藏";
+            }
+
+            function formatLeafText(value, options, row) {
+                if (value == 1) return "是";
+                else return "否";
+            }
+
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function () {
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+
+            });
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+}

@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table id="grid_table" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            @for (int i = 0; i < ViewBag.ColumnNames.Length; i++)
+            {
+                <th>@ViewBag.ColumnNames[i]</th>
+            }
+        </tr>
+    </thead>
+
+</table>
+
+
+@section scripts{
+    <script type="text/javascript">
+        var grid_selector = "#grid_table";
+        var url = "/Menu/list";
+
+        $(function () {
+            $(grid_selector).DataTable({
+                "serverSide": true,
+                "ajax": url,
+                "columns": [
+                   { "data": "MenuId" },
+                   { "data": "MenuNo" },
+                   { "data": "MenuName" },
+                   { "data": "Url" },
+                   { "data": "Status" }
+                ]
+            });
+        })
+
+    </script>
+}

@@ -1,0 +1,590 @@
+﻿@{
+    ViewBag.Title = "菜单管理";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <input type="button" id="add" value="添加菜单" />
+            <table id="grid_table">
+                @*<thead>
+                        <tr>
+                            <th class="center"><input type="checkbox" name="checkall" class="ace" /><span class="lbl"></span></th>
+                            <th>菜单编号</th>
+                            <th>菜单名</th>
+                            <th>菜单路径</th>
+                            <th class="hidden-480">上级菜单</th>
+                            <th></th>
+                        </tr>
+                    </thead>*@
+                @*<tbody>
+                        <tr>
+                            <td class="center">
+                                <input type="checkbox" class="ace" />
+                                <span class="lbl"></span>
+                            </td>
+                            <td>1</td>
+                            <td>菜单管理</td>
+                            <td>/Menu/Index</td>
+                            <td>无</td>
+                            <td>
+                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="blue" href="#">
+                                            <i class="icon-zoom-in bigger-130"></i>
+                                        </a>
+
+                                        <a class="green" href="#">
+                                            <i class="icon-pencil bigger-130"></i>
+                                        </a>
+
+                                        <a class="red" href="#">
+                                            <i class="icon-trash bigger-130"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                    <div class="inline position-relative">
+                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-caret-down icon-only bigger-120"></i>
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                            <li>
+                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                    <span class="blue">
+                                                        <i class="icon-zoom-in bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <span class="green">
+                                                        <i class="icon-edit bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="icon-trash bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div><!-- 小屏设备适配 -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td>
+                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="blue" href="#">
+                                            <i class="icon-zoom-in bigger-130"></i>
+                                        </a>
+
+                                        <a class="green" href="#">
+                                            <i class="icon-pencil bigger-130"></i>
+                                        </a>
+
+                                        <a class="red" href="#">
+                                            <i class="icon-trash bigger-130"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                    <div class="inline position-relative">
+                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-caret-down icon-only bigger-120"></i>
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                            <li>
+                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                    <span class="blue">
+                                                        <i class="icon-zoom-in bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <span class="green">
+                                                        <i class="icon-edit bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="icon-trash bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div><!-- 小屏设备适配 -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td>
+                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="blue" href="#">
+                                            <i class="icon-zoom-in bigger-130"></i>
+                                        </a>
+
+                                        <a class="green" href="#">
+                                            <i class="icon-pencil bigger-130"></i>
+                                        </a>
+
+                                        <a class="red" href="#">
+                                            <i class="icon-trash bigger-130"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                    <div class="inline position-relative">
+                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-caret-down icon-only bigger-120"></i>
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                            <li>
+                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                    <span class="blue">
+                                                        <i class="icon-zoom-in bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <span class="green">
+                                                        <i class="icon-edit bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="icon-trash bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div><!-- 小屏设备适配 -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td>
+                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="blue" href="#">
+                                            <i class="icon-zoom-in bigger-130"></i>
+                                        </a>
+
+                                        <a class="green" href="#">
+                                            <i class="icon-pencil bigger-130"></i>
+                                        </a>
+
+                                        <a class="red" href="#">
+                                            <i class="icon-trash bigger-130"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                    <div class="inline position-relative">
+                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-caret-down icon-only bigger-120"></i>
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                            <li>
+                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                    <span class="blue">
+                                                        <i class="icon-zoom-in bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <span class="green">
+                                                        <i class="icon-edit bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="icon-trash bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div><!-- 小屏设备适配 -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td>
+                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                        <a class="blue" href="#">
+                                            <i class="icon-zoom-in bigger-130"></i>
+                                        </a>
+
+                                        <a class="green" href="#">
+                                            <i class="icon-pencil bigger-130"></i>
+                                        </a>
+
+                                        <a class="red" href="#">
+                                            <i class="icon-trash bigger-130"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                    <div class="inline position-relative">
+                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-caret-down icon-only bigger-120"></i>
+                                        </button>
+
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                            <li>
+                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                    <span class="blue">
+                                                        <i class="icon-zoom-in bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <span class="green">
+                                                        <i class="icon-edit bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+                                                        <i class="icon-trash bigger-120"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div><!-- 小屏设备适配 -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>2</td>
+                            <td>用户管理</td>
+                            <td>/User/Index</td>
+                            <td>无</td>
+                            <td></td>
+                        </tr>
+                    </tbody>*@
+            </table>
+            <div id="jqGridPager"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var lastSel;
+        var listUrl = "/Menu/list";
+        var grid_selector = "#grid_table";
+        var pager_selector = "#jqGridPager";
+        var cols = "菜单编号,菜单名称,菜单路径,状态,父路径";
+        var colsDataField = "MenuNo,MenuName,Url,Status,ParentUrl";
+
+        function buildColumnNames(cols) {
+            var fields = cols.split(',');
+            var columns = [];
+            for (var i = 0; i < fields.length; i++) {
+                columns.push(fields[i]);
+            }
+            return columns;
+        }
+
+        function buildColumnModel(colsDataField) {
+            var fields = colsDataField.split(",");
+            var columns = [];
+            for (var i = 0; i < fields.length; i++) {
+                if (fields[i] == "Status") {
+                    columns.push({
+                        name: fields[i], index: fields[i], width: 50, align: 'center', editable: true, edittype: 'select', editoptions: { value: "1:启用;0:禁用" },
+                        formatter: function (cell, options, rows) {
+                            if (rows.Status == 1) return "启用";
+                            else return "禁用";
+                        }
+                    });
+                } else if (fields[i] == "MenuNo") {
+                    columns.push({ name: fields[i], index: fields[i], width: 50, align: 'center', editable: false });
+                }
+                else if (fields[i] == "MenuName") {
+                    columns.push({ name: fields[i], index: fields[i], width: 50, align: 'left', editable: true });
+                }
+                else {
+                    columns.push({ name: fields[i], index: fields[i], width: 50, align: 'center', editable: true });
+                }
+            }
+            console.log(columns);
+            return columns;
+        }
+
+        jQuery(function ($) {
+
+            $(grid_selector).jqGrid({
+                url: listUrl,
+                datatype: "json",
+                mtype: "GET",
+                colNames: buildColumnNames(cols),
+                colModel: buildColumnModel(colsDataField),
+                viewrecords: true,
+                rowNum: 20,
+                rowList: [10, 20, 30],
+                pager: pager_selector,
+                sortorder: "desc",
+                editurl: '@Url.Action("Save","Menu")',
+                //加载完成
+                loadComplete: function (xhr) { },
+                loadError: function (xhr, status, error) {
+                    alert("xhr:" + xhr + "\r\n" +
+                        "status:" + status + "\r\n" +
+                        "error:" + error);
+                },
+                autowidth: true,
+                caption: "jqGrid CURD example"
+            });
+            
+
+            jQuery(grid_selector).jqGrid('navGrid', pager_selector,
+                {                   
+                    add: false,
+                    //addicon: 'icon-plus-sign purple',
+                    del: false,
+                    //delicon: 'icon-trash red',
+                    edit: false,
+                    //editicon: 'icon-pencil blue',
+                    search: false,
+                    //searchicon: 'icon-search orange',
+                    refresh: false,
+                    //refreshicon: 'icon-refresh green',
+                    view: false,
+                    //viewicon: 'icon-zoom-in grey',
+                },
+                {
+                    //edit record form
+                    closeAfterEdit: true,
+                    recreateForm: true,
+                    beforeShowForm: function (e) {
+                        console.log(e[0]);
+                        var form = $(e[0]);
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                        //style_edit_form(form);
+                    }
+                },
+				{
+				    //new record form
+				    closeAfterAdd: true,
+				    recreateForm: true,
+				    //viewPagerButtons: false,
+				    beforeShowForm: function (e) {
+				        var form = $(e[0]);
+				        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+				        //style_edit_form(form);
+				    }
+				},
+                {
+                    //delete record form
+                    recreateForm: true,
+                    beforeShowForm: function (e) {
+                        var form = $(e[0]);
+                        if (form.data('styled')) return false;
+
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                        style_delete_form(form);
+
+                        form.data('styled', true);
+                    },
+                    onClick: function (e) {
+                        alert(1);
+                    }
+                },
+				{
+				    //search form
+				    recreateForm: true,
+				    afterShowSearch: function (e) {
+				        var form = $(e[0]);
+				        form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+				        style_search_form(form);
+				    },
+				    afterRedraw: function () {
+				        style_search_filters($(this));
+				    }
+					,
+				    multipleSearch: true,
+				    /**
+					multipleGroup:true,
+					showQuery: true
+					*/
+				},
+				{
+				    //view record form
+				    recreateForm: true,
+				    beforeShowForm: function (e) {
+				        var form = $(e[0]);
+				        form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+				    }
+				}
+            );
+
+            function style_edit_form(form) {
+                //enable datepicker on "sdate" field and switches for "stock" field
+                form.find('input[name=sdate]').datepicker({ format: 'yyyy-mm-dd', autoclose: true })
+                    .end().find('input[name=stock]')
+                          .addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
+
+                //update buttons classes
+                var buttons = form.next().find('.EditButton .fm-button');
+                buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
+                buttons.eq(0).addClass('btn-primary').prepend('<i class="icon-ok"></i>');
+                buttons.eq(1).prepend('<i class="icon-remove"></i>')
+
+                buttons = form.next().find('.navButton a');
+                buttons.find('.ui-icon').remove();
+                buttons.eq(0).append('<i class="icon-chevron-left"></i>');
+                buttons.eq(1).append('<i class="icon-chevron-right"></i>');
+            }
+
+            function style_delete_form(form) {
+                var buttons = form.next().find('.EditButton .fm-button');
+                buttons.addClass('btn btn-sm').find('[class*="-icon"]').remove();//ui-icon, s-icon
+                buttons.eq(0).addClass('btn-danger').prepend('<i class="icon-trash"></i>');
+                buttons.eq(1).prepend('<i class="icon-remove"></i>')
+            }
+
+            function formatStatusText(cellvalue, options, rowObject) {
+                //console.log(rowObject + ' ---- ' + rowObject[4]);
+                if (rowObject[4] == 1) return "显示";
+                else return "隐藏";
+            }
+
+            function formatLeafText(value, options, row) {
+                if (value == 1) return "是";
+                else return "否";
+            }
+
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function () {
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+
+            });
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+}
