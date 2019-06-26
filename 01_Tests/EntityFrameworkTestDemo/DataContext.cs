@@ -16,5 +16,9 @@ namespace EntityframeworkTests
         }
 
         public DbSet<Menu> Menus { get; set; }
+
+        public DbSet<TableA> TableA { get; set; }
+
+        public DbSet<TableB> TableB { get; set; }
     }
 }

@@ -23,10 +23,6 @@ namespace EntityframeworkTests
             }
             Console.WriteLine("菜单数据已删除！");
 
-
-            //显示菜单所有数据
-            //DisplayAll();
-
             ////更新数据
             //var menu = new Menu { MenuId = 4, MenuName = "组织列表", Url = "/Organization/Index", ParentId = 2, Status = 1, IsLeaf = 0 };
             //try
@@ -35,11 +31,10 @@ namespace EntityframeworkTests
             //    context.Set<Menu>().Attach(menu);
             //    context.SaveChanges();
             //}
-            //catch (Exception ex)
+            //catch (Exception e)
             //{
-            //    Console.Write(ex.Message);
-            //}
-            //Console.WriteLine();
+            //    Console.Write(e.Message);
+            //}            
             //DisplayAll();
 
             // 添加菜单
@@ -54,6 +49,10 @@ namespace EntityframeworkTests
 
             // 查询所有菜单
             p.displayAll();
+
+            // Include example
+            EfIncludeDemo demo = new EfIncludeDemo();
+            demo.IncludeTest();
 
             Console.Read();
         }
